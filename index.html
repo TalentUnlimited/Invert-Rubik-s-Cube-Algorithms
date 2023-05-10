@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Invert Algorithms</title>
+	<!--<link rel="stylesheet" href="style.css">-->
+
+	<style>
+		html, body {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+			display: table
+		}
+
+		#content {
+			display: table-cell;
+			text-align: center;
+			vertical-align: middle;
+		}
+	</style>
+
+	<script>
+		function invert() {
+			let algorithm = document.getElementById("alg").value;
+			
+			let algorithm_split = algorithm.split(" ");
+			
+			let inverse_algorithm = [];
+
+			for(let i = 0; i<algorithm_split.length; i++) {
+
+				if(algorithm_split[i].includes('2')){
+					//console.log(algorithm_split[i], 2);
+					inverse_algorithm.push(algorithm_split[i])
+				} else {
+					if (algorithm_split[i].includes("'")){
+						//console.log(algorithm_split[i], algorithm_split[i].replace("'", ""));
+						inverse_algorithm.push(algorithm_split[i].replace("'", ""))
+					} else {
+						//console.log(algorithm_split[i], algorithm_split[i] + "'");
+						inverse_algorithm.push(algorithm_split[i] + "'")
+					}
+				}
+			}
+			//console.log(inverse_algorithm.reverse());
+			document.getElementById('algo').innerHTML = "Original: " + algorithm_split.join(" ");
+			document.getElementById('invalg').innerHTML = "Inverted: " + "<b>" + inverse_algorithm.reverse().join(" ") + "</b>";
+
+		}
+	</script>
+
+</head>
+<body>
+
+		<div id="content" onsubmit="invert()">
+		<h2>Invert Rubik's Cube Algorithms</h2>
+		<label for="alg">Enter Algorithm:</label>
+		<input type="text" id="alg" style="width:50%">
+		<input type="button" value="Submit" onclick="invert()">
+		<br>
+		<p id="algo"></p>
+		<p id="invalg"></p>
+	</div>
+
+</body>
+</html>
